@@ -23,6 +23,26 @@ public abstract class ItemBiblioteca {
 
     public boolean isDisponivel() {
         return disponivel;
+
+    }
+
+    public boolean Emprestar() {
+        if (disponivel) {
+            disponivel = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean Devolver() {
+        if (!disponivel) {
+            disponivel = true;
+            return true;
+
+        } else {
+            return false;
+        }
     }
 
     public abstract void ExibirInformacoes();

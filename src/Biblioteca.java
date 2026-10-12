@@ -14,6 +14,8 @@ public class Biblioteca {
             System.out.println("3 - Listar Livros e Revistas.");
             System.out.println("4 - Buscar livro ou revista.");
             System.out.println("5 - Cadastrar revista.");
+            System.out.println("6 - Emprestar livro ou revista. ");
+            System.out.println("7 - Devolver livrom ou revista. ");
             System.out.println("0 - Sair.");
             System.out.println("Escolha uma opçao para continuar: ");
             System.out.println("================================");
@@ -148,6 +150,60 @@ public class Biblioteca {
 
                     itens.add(novaRevista);
                     System.out.println("Revista cadatrada com sucesso !!");
+                    break;
+
+                case 6:
+                    System.out.println("===== Emprestar livro ou revista =====");
+                    if (itens.isEmpty()) {
+                        System.out.println("Nenhum livro ou revista cadatrado na biblioteca !! ");
+                    } else {
+                        for (int i = 0; i < itens.size(); i++) {
+                            ItemBiblioteca item = itens.get(i);
+                            System.out.println((i + 1) + " - " + item.getTitulo() + " - Disponivel: "
+                                    + item.isDisponivel());
+                        }
+                        System.out.println("Digite o numero do livro ou revista que deseja emprestar: ");
+                        int numeroEmprestimo = entrada.nextInt();
+                        if (numeroEmprestimo >= 1 && numeroEmprestimo <= itens.size()) {
+                            ItemBiblioteca itemEmprestimo = itens.get(numeroEmprestimo - 1);
+                            if (itemEmprestimo.Emprestar()) {
+                                System.out.println("Item emprestado com sucesso !! ");
+                            } else {
+                                System.out.println("Item indisponivel para emprestimo !! ");
+                            }
+                        } else {
+                            System.out.println("Numero de livro ou revista invalido !!");
+                        }
+                    }
+
+                    break;
+
+                case 7:
+                    System.out.println("===== Devolver livro ou revista =====");
+                    if (itens.isEmpty()) {
+                        System.out.println("Nenhum livro ou revista cadastrado na biblioteca !! ");
+
+                    } else {
+                        for (int i = 0; i < itens.size(); i++) {
+
+                            ItemBiblioteca item = itens.get(i);
+                            System.out.println((i + 1) + " - " + item.getTitulo() + " - Disponivel: "
+                                    + item.isDisponivel());
+                        }
+                        System.out.println("Digite o numero do livro ou revista que deseja devolver: ");
+                        int numeroDevolucao = entrada.nextInt();
+                        if (numeroDevolucao >= 1 && numeroDevolucao <= itens.size()) {
+                            ItemBiblioteca item = itens.get(numeroDevolucao - 1);
+                            if (item.Devolver()) {
+                                System.out.println("Livro ou revista devolvido com sucesso!");
+                            } else {
+                                System.out.println("Este livro ou revista ja esta disponivel na biblioteca !!");
+                            }
+                        } else {
+                            System.out.println("Numero de livro ou revista invalido !!");
+                        }
+                    }
+
                     break;
 
                 case 0:
